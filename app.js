@@ -1,11 +1,14 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const authenticate = require('./middleware/authenticate')
 const gql = require('./graphql')
 
 const app = express()
 
 app.use(bodyParser.json())
+
+app.use(authenticate)
 
 app.use('/api/v1', gql)
 
