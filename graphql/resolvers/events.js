@@ -1,12 +1,11 @@
 const Event = require('../../models/event')
 const User = require('../../models/user')
-const { dateToString } = require('../../helpers/date')
-const { eventTransformer } = require('../../helpers/resolverTransformers')
+const { dateToString, eventTransformer } = require('../../helpers')
 
 module.exports = {
     events: async () => {
         try {
-            const events = await Event.find().populate('creator')
+            const events = await Event.find()
             return events.map(event => {
                 return eventTransformer(event)
             })
